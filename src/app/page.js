@@ -16,7 +16,7 @@ export default function Home() {
   const [isSearching, setIsSearching] = useState(false);
 
   // Validation constants
-  const MIN_FILE_SIZE = 5 * 1024; // 5 KB minimum
+  // const MIN_FILE_SIZE = 5 * 1024; // 5 KB minimum
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB maximum
   const MIN_TEXT_LENGTH = 50; // Minimum characters
   const MAX_FILE_NAME_LENGTH = 100;
@@ -34,11 +34,11 @@ export default function Home() {
       return;
     }
 
-    if (file.size < MIN_FILE_SIZE) {
-      setUploadError("❌ File too small. Minimum 5 KB required");
-      setIsLoading(false);
-      return;
-    }
+    // if (file.size < MIN_FILE_SIZE) {
+    //   setUploadError("❌ File too small. Minimum 5 KB required");
+    //   setIsLoading(false);
+    //   return;
+    // }
 
     if (file.size > MAX_FILE_SIZE) {
       setUploadError("❌ File too large. Maximum 10 MB allowed");
@@ -286,9 +286,6 @@ export default function Home() {
                   <div className="space-y-1 text-sm">
                     <p className="text-gray-300"><span className="text-cyan-400 font-semibold">Name:</span> {file.name}</p>
                     <p className="text-gray-300"><span className="text-cyan-400 font-semibold">Size:</span> {(file.size / 1024).toFixed(2)} KB</p>
-                    <p className={`text-sm font-medium ${file.size < MIN_FILE_SIZE ? "text-orange-400" : file.size > MAX_FILE_SIZE ? "text-red-400" : "text-emerald-400"}`}>
-                      {file.size < MIN_FILE_SIZE ? "⚠️ File too small" : file.size > MAX_FILE_SIZE ? "❌ File too large" : "✓ File size valid"}
-                    </p>
                   </div>
                 </div>
               )}
