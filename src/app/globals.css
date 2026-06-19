@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0f172a;
+  --foreground: #f1f5f9;
 }
 
 @theme inline {
@@ -12,15 +12,150 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  @apply transition-colors duration-200;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 30, 40, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgb(34, 211, 238) 0%, rgb(99, 102, 241) 100%);
+  border-radius: 10px;
+  border: 2px solid rgba(30, 30, 40, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgb(165, 243, 252) 0%, rgb(129, 140, 248) 100%);
+}
+
+/* Remove default input number spinner */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.8);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+  background-size: 1000px 100%;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #22d3ee, #3b82f6, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Backdrop blur support */
+.backdrop-blur-xl {
+  backdrop-filter: blur(20px);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(34, 211, 238, 0.1);
+}
+
+/* Focus states */
+input:focus {
+  outline: none;
+  ring: 2px;
+}
+
+/* Smooth button transitions */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
